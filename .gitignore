@@ -1,0 +1,19 @@
+# Python
+fastapi-server/venv/
+fastapi-server/__pycache__/
+fastapi-server/.pytest_cache/
+fastapi-server/.env
+
+# React
+react-client/node_modules/
+react-client/dist/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
