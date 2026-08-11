@@ -1,0 +1,164 @@
+{
+  "results": [
+    {
+      "id": "https://openalex.org/W3038568908",
+      "title": "Radiation Resistant Camera System for Monitoring Deuterium Plasma Discharges in the Large Helical Device",
+      "publication_year": 2020,
+
+      "authorships": [
+        {
+          "author": {
+            "id": "https://openalex.org/A5039600762",
+            "display_name": "M. Shoji"
+          }
+        },
+        {
+          "author": {
+            "id": null,
+            "display_name": "LHD Experiment Group"
+          }
+        }
+      ],
+
+      "topics": [
+        {
+          "id": "https://openalex.org/T10346",
+          "display_name": "Magnetic confinement fusion research"
+        },
+        {
+          "id": "https://openalex.org/T11949",
+          "display_name": "Nuclear Physics and Applications"
+        },
+        {
+          "id": "https://openalex.org/T10592",
+          "display_name": "Fusion materials and technologies"
+        }
+      ],
+
+      "abstract_inverted_index": {
+        "Radiation": [0],
+        "resistant": [1, 196],
+        "camera": [2],
+        "system": [3, 18],
+        "was": [4, 98],
+        "constructed": [5],
+        "for": [6],
+        "monitoring": [7],
+        "deuterium": [8],
+        "plasma": [9, 44],
+        "discharges": [10],
+        "in": [11, 42, 52, 69, 83, 118],
+        "the": [12, 43, 47, 62, 88, 91, 94, 105, 108, 112, 115, 119, 124, 129, 132, 139, 142, 145, 151, 159, 163, 174, 178, 187, 191, 194],
+        "Large": [13],
+        "Helical": [14],
+        "Device": [15],
+        "(LHD).": [16],
+        "This": [17, 181],
+        "has": [19, 134],
+        "contributed": [20],
+        "to": [21, 32, 123, 162, 186],
+        "safe": [22],
+        "operation": [23],
+        "during": [24],
+        "two": [25],
+        "experimental": [26],
+        "campaigns": [27],
+        "without": [28],
+        "serious": [29],
+        "problems": [30],
+        "due": [31],
+        "radiation": [33, 95, 109, 143, 160, 195],
+        "(neutrons": [34],
+        "and": [35, 111],
+        "gamma-rays).": [36],
+        "The": [37, 64],
+        "cameras": [38, 65, 133],
+        "steadily": [39],
+        "functioned": [40],
+        "even": [41],
+        "discharge": [45],
+        "with": [46, 78, 158],
+        "maximum": [48],
+        "neutron": [49],
+        "emission": [50],
+        "rate": [51],
+        "FY": [53],
+        "2017,": [54],
+        "though": [55],
+        "some": [56, 169],
+        "bright": [57, 154, 170],
+        "specks": [58, 155, 171],
+        "temporarily": [59],
+        "appeared": [60],
+        "on": [61, 144, 177],
+        "images.": [63],
+        "have": [66],
+        "been": [67, 135],
+        "installed": [68],
+        "shield": [70, 92, 120],
+        "boxes": [71, 76],
+        "which": [72, 103, 165],
+        "consist": [73],
+        "of": [74, 90, 107, 114, 128, 131, 138, 141, 153, 190, 193],
+        "lead": [75],
+        "covered": [77],
+        "10%": [79],
+        "borated": [80],
+        "polyethylene": [81],
+        "blocks": [82],
+        "all": [84],
+        "directions.": [85],
+        "For": [86],
+        "optimizing": [87],
+        "design": [89],
+        "box,": [93],
+        "flux": [96, 110, 161],
+        "distribution": [97],
+        "calculated": [99],
+        "by": [100, 173],
+        "MCNP-6": [101],
+        "code,": [102],
+        "reveals": [104],
+        "reduction": [106],
+        "change": [113],
+        "energy": [116],
+        "spectra": [117],
+        "box.": [121],
+        "Thanks": [122],
+        "optimization,": [125],
+        "significant": [126],
+        "extension": [127, 189],
+        "lifetime": [130, 192],
+        "realized.": [136],
+        "Investigation": [137],
+        "influence": [140],
+        "CCD": [146],
+        "image": [147, 179],
+        "sensor": [148],
+        "shows": [149],
+        "that": [150, 168],
+        "number": [152],
+        "generally": [156],
+        "increases": [157],
+        "camera,": [164],
+        "also": [166, 183],
+        "indicates": [167],
+        "disappear": [172],
+        "self-annealing": [175],
+        "process": [176],
+        "sensor.": [180],
+        "phenomenon": [182],
+        "highly": [184],
+        "contributes": [185],
+        "further": [188],
+        "cameras.": [197]
+      }
+    }
+
+
+
+
+
+
+  ]
+}
