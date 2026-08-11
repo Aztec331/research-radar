@@ -5,7 +5,7 @@ import json
 # Add fastapi-server/ to Python's import path so we can import app/.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from app.services.normalization_service import normalize_paper
+from app.services.openalex_transform_service import normalize_paper
 
 
 def main():
