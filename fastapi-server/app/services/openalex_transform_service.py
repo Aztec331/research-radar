@@ -31,7 +31,7 @@ def reconstruct_abstract(inverted_index: dict | None) -> str | None:
     return " ".join(word for _, word in words)
 
 
-def normalize_paper(raw_paper: dict) -> dict:
+def transform_paper(raw_paper: dict) -> dict:
     """
     Extract the fields we need from one raw OpenAlex paper.
 
