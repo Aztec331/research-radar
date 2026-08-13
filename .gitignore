@@ -1,6 +1,7 @@
 # Python
 fastapi-server/venv/
-fastapi-server/__pycache__/
+**/__pycache__/
+*.pyc
 fastapi-server/.pytest_cache/
 fastapi-server/.env
 
