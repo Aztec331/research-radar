@@ -92,11 +92,17 @@ def get_or_create_topic(
 def ingest_paper(
     db: Session,
     paper_data: dict,
-) -> Paper:
+) -> Paper | None:
+    """
+    Store one transformed paper and connect it to its authors and OpenAlex topics.
+    Existing records are reused so the same paper, author, or topic is not duplicated.
+    """
 
     paper_info = paper_data["paper"]
 
-    # 1. Get or create the paper
+    if not paper_info.get("openalex_id"):
+        return None
+
     paper = get_or_create_paper(
         db=db,
         openalex_id=paper_info["openalex_id"],
@@ -105,8 +111,10 @@ def ingest_paper(
         year=paper_info["year"],
     )
 
-    # 2. Get or create and attach authors
     for author_data in paper_data["authors"]:
+        if not author_data.get("openalex_id"):
+            continue
+
         author = get_or_create_author(
             db=db,
             openalex_id=author_data["openalex_id"],
@@ -116,8 +124,10 @@ def ingest_paper(
         if author not in paper.authors:
             paper.authors.append(author)
 
-    # 3. Get or create and attach OpenAlex topics
     for topic_data in paper_data["topics"]:
+        if not topic_data.get("openalex_id"):
+            continue
+
         topic = get_or_create_topic(
             db=db,
             openalex_id=topic_data["openalex_id"],
