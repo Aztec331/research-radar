@@ -108,13 +108,20 @@ export default function PaperDetailPage() {
 
       <header className="sticky top-0 z-10 border-b border-slate-200 bg-white">
         <div className="max-w-5xl mx-auto px-4 py-4">
-          <h1 className="text-xl font-semibold">Research Radar</h1>
+
+        <button
+          onClick={() => navigate("/")}
+          className="text-xl font-semibold"
+        >
+          Research Radar
+        </button>
+
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-4 py-6">
-        <button onClick={() => navigate("/")} className="text-sm text-slate-500 hover:text-slate-800 mb-4 inline-flex items-center gap-1">
-          ← Back to search
+        <button onClick={() => navigate(-1)} className="text-sm text-slate-500 hover:text-slate-800 mb-4 inline-flex items-center gap-1">
+          ← Back to page
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

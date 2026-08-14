@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getPapers } from "../api/papers";
 
 const TOPICS = ["All Topics", "NLP", "Computer Vision"];
@@ -8,11 +8,14 @@ const YEARS = ["All Years", 2026, 2025, 2024, 2023, 2022];
 //Actual Component--------------------------------------------------------------------
 export default function SearchPage() {
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
-  const [topic, setTopic] = useState("All Topics");
-  const [year, setYear] = useState("All Years");
-  const [authorQuery, setAuthorQuery] = useState(""); // text search instead of dropdown
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const page = Number(searchParams.get("page")) || 1;
+  const query = searchParams.get("q") || "";
+  const topic = searchParams.get("topic") || "All Topics";
+  const year = searchParams.get("year") || "All Years";
+  const authorQuery = searchParams.get("author") || "";
+
 
   const [papers, setPapers] = useState([]);
   const [total, setTotal] = useState(0);
@@ -21,6 +24,25 @@ export default function SearchPage() {
 
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [debouncedAuthor, setDebouncedAuthor] = useState("");
+
+  function updateParams(changes) {
+  const next = new URLSearchParams(searchParams);
+
+  Object.entries(changes).forEach(([key, value]) => {
+    if (
+      value &&
+      value !== "All Topics" &&
+      value !== "All Years"
+    ) {
+      next.set(key, value);
+    } else {
+      next.delete(key);
+    }
+  });
+
+  setSearchParams(next);
+}
+
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -83,10 +105,6 @@ useEffect(() => {
 }, [debouncedQuery, topic, year, debouncedAuthor, page]);
 
 
-  function resetPage() {
-    setPage(1);
-  }
-
   const hasActiveFilters =
     topic !== "All Topics" || year !== "All Years" || authorQuery || query;
 
@@ -97,10 +115,17 @@ useEffect(() => {
     <div className="min-h-screen bg-slate-50 text-slate-900">
 
       {/* Header */}
-      <header className="border-b border-slate-200 bg-white">
+      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white">
         <div className="max-w-5xl mx-auto px-4 py-4">
-          <h1 className="text-xl font-semibold">Research Radar</h1>
-          <p className="text-sm text-slate-500">Search recent papers in computer vision and NLP</p>
+
+          <button
+          onClick={() => navigate("/")}
+          className="text-xl font-semibold"
+          >
+          Research Radar
+          </button>
+
+          <p className="text-sm text-slate-500">Search recent papers</p>
         </div>
       </header>
 
@@ -113,8 +138,10 @@ useEffect(() => {
             type="text"
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value);
-              resetPage();
+            updateParams({
+            q: e.target.value,
+            page: "1",
+            });
             }}
             placeholder="Search by title or abstract..."
             className="w-full rounded-md border border-slate-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
@@ -126,7 +153,12 @@ useEffect(() => {
 
           <select
             value={topic}
-            onChange={(e) => { setTopic(e.target.value); resetPage(); }}
+            onChange={(e) => {
+            updateParams({
+            topic: e.target.value,
+            page: "1",
+            });
+            }}
             className="rounded-md border border-slate-300 px-3 py-1.5 text-sm bg-white"
           >
             {TOPICS.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -134,7 +166,12 @@ useEffect(() => {
 
           <select
             value={year}
-            onChange={(e) => { setYear(e.target.value); resetPage(); }}
+            onChange={(e) => {
+            updateParams({
+            year: e.target.value,
+            page: "1",
+            });
+            }}
             className="rounded-md border border-slate-300 px-3 py-1.5 text-sm bg-white"
           >
             {YEARS.map((y) => <option key={y} value={y}>{y}</option>)}
@@ -144,16 +181,19 @@ useEffect(() => {
           <input
             type="text"
             value={authorQuery}
-            onChange={(e) => { setAuthorQuery(e.target.value); resetPage(); }}
+            onChange={(e) => {
+            updateParams({
+            author: e.target.value,
+            page: "1",
+            });
+            }}
             placeholder="Filter by author..."
             className="rounded-md border border-slate-300 px-3 py-1.5 text-sm bg-white w-48"
           />
 
           {hasActiveFilters && (
             <button
-              onClick={() => {
-                setQuery(""); setTopic("All Topics"); setYear("All Years"); setAuthorQuery(""); resetPage();
-              }}
+              onClick={() => setSearchParams({})}
               className="text-sm text-slate-500 underline px-2"
             >
               Clear filters
@@ -230,7 +270,9 @@ useEffect(() => {
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-2 mt-6">
             <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              onClick={() =>
+              updateParams({ page: String(Math.max(1, page - 1)) })
+              }
               disabled={currentPage === 1}
               className="px-3 py-1.5 text-sm rounded-md border border-slate-300 disabled:opacity-40 disabled:cursor-not-allowed"
             >
@@ -240,7 +282,9 @@ useEffect(() => {
               Page {currentPage} of {totalPages}
             </span>
             <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              onClick={() =>
+              updateParams({ page: String(Math.min(totalPages, page + 1)) })
+              }
               disabled={currentPage === totalPages}
               className="px-3 py-1.5 text-sm rounded-md border border-slate-300 disabled:opacity-40 disabled:cursor-not-allowed"
             >
