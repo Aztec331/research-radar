@@ -1,14 +1,17 @@
-export default function App() {
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import PaperDetailPage from "./components/PaperDetailPage";
+import SearchPage from "./components/SearchPage";
 
+function App() {
   return (
-    <div className="bg-red-900 min-h-screen flex items-center justify-center bg-slate-900">
-
-      <h1 className="text-4xl font-bold text-white">
-        Tailwind is working Behenchod!
-      </h1>
-      
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SearchPage />} />
+        <Route path="/papers/:paperId" element={<PaperDetailPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
-
-
 }
+
+export default App;
