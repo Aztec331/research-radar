@@ -13,7 +13,7 @@ def get_papers(
     year: int | None = None,
     author: str | None = None,
     page: int = 1,
-    limit: int = 6,
+    limit: int = 4,
 ) -> tuple[list[Paper], int]:
     """
     Fetch papers from the database with optional search, filters,
