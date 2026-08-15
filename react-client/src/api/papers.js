@@ -7,3 +7,7 @@ export const getPapers = (params) => {
 export const getPaperById = (paperId) => {
   return api.get(`/api/papers/${paperId}`);
 };
+
+export const getSimilarPapers = (paperId) => {
+  return api.get(`/api/ai/papers/${paperId}/similar`);
+};
