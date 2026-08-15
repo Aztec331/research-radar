@@ -5,9 +5,11 @@ from sqlalchemy import text
 from app.database import engine
 from app.models import association_models
 from app.routes.paper_routes import router as paper_router
+from app.routes import ai_routes
 
 
 app = FastAPI()
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,7 +22,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(paper_router)
+app.include_router(ai_routes.router)
 
 
 @app.get("/")
