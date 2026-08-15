@@ -4,6 +4,7 @@ from sqlalchemy import String, Text, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+from app.models.association_models import PaperAuthor, PaperTopic
 
 if TYPE_CHECKING:
     from app.models.author_model import Author
